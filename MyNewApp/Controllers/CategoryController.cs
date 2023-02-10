@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MyNewApp.DbContexts;
+using MyNewApp.Models;
 
 namespace MyNewApp.Controllers
 {
@@ -13,8 +14,8 @@ namespace MyNewApp.Controllers
         }
         public IActionResult Index()
         {
-            var categoryList = _dbContext.Categories.ToList();
-            return View();
+            IEnumerable<Category> categoryList = _dbContext.Categories;
+            return View(categoryList);
         }
     }
 }

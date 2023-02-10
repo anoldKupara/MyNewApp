@@ -1,7 +1,43 @@
-﻿
+﻿@model IEnumerable<MyNewApp.Models.Category>
 @{
     ViewData["Title"] = "Index";
 }
 
 <h1>Index</h1>
-
+<table class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Category Name
+            </th>
+            <th>
+                Display Order
+            </th>
+            <th>
+                Created Date Time
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td width="50%">
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td width="50%">
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td width="50%">
+                    @Html.DisplayFor(modelItem => item.DisplayOrder)
+                </td>
+                <td width="50%">
+                    @Html.DisplayFor(modelItem => item.CreatedDateTime)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
