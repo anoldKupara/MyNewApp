@@ -17,5 +17,11 @@ namespace MyNewApp.Controllers
             IEnumerable<Category> categoryList = _dbContext.Categories;
             return View(categoryList);
         }
+
+        // GET - Create
+        public IActionResult Create()
+        {
+            return View();
+        }
     }
 }
