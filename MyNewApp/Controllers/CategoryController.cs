@@ -29,6 +29,25 @@ namespace MyNewApp.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Category category)
         {
+            if (category.Name == category.DisplayOrder.ToString())
+            {
+                ModelState.AddModelError("Name", "Name and Display Order cannot be the same");
+            }
+
+            if (category.Name == null)
+            {
+                ModelState.AddModelError("Name", "Name cannot be null");
+            }
+
+            if (category.Name.Length > 100)
+            {
+                ModelState.AddModelError("Name", "Name cannot be longer than 100 characters");
+            }
+
+            if (category.Name.Length < 3)
+            {
+                ModelState.AddModelError("Name", "Name cannot be shorter than 3 characters");
+            }
             if (ModelState.IsValid)
             {
                 _dbContext.Categories.Add(category);
