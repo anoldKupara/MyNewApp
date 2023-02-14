@@ -15,4 +15,9 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.11" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MyNewApp.DataAccess\MyNewApp.DataAccess.csproj" />
+    <ProjectReference Include="..\MyNewApp.Models\MyNewApp.Models.csproj" />
+  </ItemGroup>
+
 </Project>
