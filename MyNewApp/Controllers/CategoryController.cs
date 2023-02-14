@@ -52,6 +52,7 @@ namespace MyNewApp.Controllers
             {
                 _dbContext.Categories.Add(category);
                 _dbContext.SaveChanges();
+                TempData["Success"] = "Category added successfully";
                 return RedirectToAction("Index");
             }
             return View(category);
@@ -101,6 +102,7 @@ namespace MyNewApp.Controllers
             {
                 _dbContext.Categories.Update(category);
                 _dbContext.SaveChanges();
+                TempData["Success"] = "Category updated successfully";
                 return RedirectToAction("Index");
             }
             return View(category);
@@ -133,6 +135,7 @@ namespace MyNewApp.Controllers
             }
             _dbContext.Categories.Remove(category);
             _dbContext.SaveChanges();
+            TempData["Success"] = "Category deleted successfully";
             return RedirectToAction("Index");
         }
     }
