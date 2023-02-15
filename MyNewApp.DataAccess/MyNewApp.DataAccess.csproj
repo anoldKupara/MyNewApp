@@ -19,4 +19,8 @@
     <ProjectReference Include="..\MyNewApp.Models\MyNewApp.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Repository\" />
+  </ItemGroup>
+
 </Project>
