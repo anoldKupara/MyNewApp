@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MyNewApp.Models;
+
+using MyNewApp.Models.Models;
 
 namespace MyNewApp.DbContexts
 {
@@ -10,5 +11,6 @@ namespace MyNewApp.DbContexts
         }
 
         public DbSet<Category> Categories { get; set; }
+        public DbSet<CoverType> CoverTypes { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using MyNewApp.Models;
+using MyNewApp.Models.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

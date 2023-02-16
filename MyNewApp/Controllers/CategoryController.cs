@@ -2,6 +2,7 @@
 using MyNewApp.DataAccess.IRepository;
 using MyNewApp.DbContexts;
 using MyNewApp.Models;
+using MyNewApp.Models.Models;
 
 namespace MyNewApp.Controllers
 {
