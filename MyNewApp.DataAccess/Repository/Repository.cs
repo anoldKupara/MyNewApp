@@ -32,7 +32,12 @@ namespace MyNewApp.DataAccess.Repository
 
         public T GetFirstOrDefault(Expression<Func<T, bool>> filter)
         {
-            throw new NotImplementedException();
+            IQueryable<T> query = dbSet;
+
+            query = query.Where(filter);
+
+            return query.FirstOrDefault();
+
         }
 
         public void Remove(int id)
