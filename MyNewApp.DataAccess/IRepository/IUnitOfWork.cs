@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace MyNewApp.DataAccess.IRepository
 {
-    internal class IUnitOfWork
+    public interface IUnitOfWork
     {
+        ICategoryRepository Category { get; }
+        void Save();
     }
 }
