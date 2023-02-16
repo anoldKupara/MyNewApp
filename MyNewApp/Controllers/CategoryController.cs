@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MyNewApp.DataAccess.IRepository;
 using MyNewApp.DbContexts;
 using MyNewApp.Models;
 
@@ -6,15 +7,15 @@ namespace MyNewApp.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ApplicationDbContext _dbContext;
+        private readonly ICategoryRepository _dbContext;
 
-        public CategoryController(ApplicationDbContext dbContext) 
+        public CategoryController(ICategoryRepository dbContext) 
         {
             _dbContext = dbContext;
         }
         public IActionResult Index()
         {
-            IEnumerable<Category> categoryList = _dbContext.Categories;
+            IEnumerable<Category> categoryList = _dbContext.GetAll();
             return View(categoryList);
         }   
 
@@ -50,8 +51,8 @@ namespace MyNewApp.Controllers
             }
             if (ModelState.IsValid)
             {
-                _dbContext.Categories.Add(category);
-                _dbContext.SaveChanges();
+                _dbContext.Add(category);
+                _dbContext.Save();
                 TempData["Success"] = "Category added successfully";
                 return RedirectToAction("Index");
             }
@@ -66,7 +67,7 @@ namespace MyNewApp.Controllers
             {
                 return NotFound();
             }
-            var category = _dbContext.Categories.Find(id);
+            var category = _dbContext.GetFirstOrDefault(u => u.Id == id);
             if (category == null)
             {
                 return NotFound();
