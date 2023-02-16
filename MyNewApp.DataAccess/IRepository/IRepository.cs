@@ -12,7 +12,7 @@ namespace MyNewApp.DataAccess.IRepository
         T GetFirstOrDefault(Expression<Func<T, bool>> filter);
         IEnumerable<T> GetAll();
         void Add(T entity);
-        void Remove(int id);
+        void Remove(T entity);
         void RemoveRange(IEnumerable<T> entity);
     }
 }
