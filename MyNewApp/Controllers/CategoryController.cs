@@ -7,15 +7,17 @@ namespace MyNewApp.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ICategoryRepository _dbContext;
+        //private readonly ICategoryRepository _dbContext;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public CategoryController(ICategoryRepository dbContext) 
+        public CategoryController(IUnitOfWork unitOfWork)
         {
-            _dbContext = dbContext;
+            //_dbContext = dbContext;
+            _unitOfWork = unitOfWork;
         }
         public IActionResult Index()
         {
-            IEnumerable<Category> categoryList = _dbContext.GetAll();
+            IEnumerable<Category> categoryList = _unitOfWork.Category.GetAll();
             return View(categoryList);
         }   
 
@@ -51,8 +53,8 @@ namespace MyNewApp.Controllers
             }
             if (ModelState.IsValid)
             {
-                _dbContext.Add(category);
-                _dbContext.Save();
+                _unitOfWork.Category.Add(category);
+                _unitOfWork.Save();
                 TempData["Success"] = "Category added successfully";
                 return RedirectToAction("Index");
             }
@@ -67,7 +69,7 @@ namespace MyNewApp.Controllers
             {
                 return NotFound();
             }
-            var category = _dbContext.GetFirstOrDefault(u => u.Id == id);
+            var category = _unitOfWork.Category.GetFirstOrDefault(u => u.Id == id);
             if (category == null)
             {
                 return NotFound();
@@ -101,8 +103,8 @@ namespace MyNewApp.Controllers
             }
             if (ModelState.IsValid)
             {
-                _dbContext.Update(category);
-                _dbContext.Save();
+                _unitOfWork.Category.Update(category);
+                _unitOfWork.Save();
 
                 return RedirectToAction("Index");
             }
@@ -116,7 +118,7 @@ namespace MyNewApp.Controllers
             {
                 return NotFound();
             }
-            var category = _dbContext.GetFirstOrDefault(u => u.Id == id);
+            var category = _unitOfWork.Category.GetFirstOrDefault(u => u.Id == id);
             if (category == null)
             {
                 return NotFound();
@@ -129,13 +131,13 @@ namespace MyNewApp.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeletePost(int? id)
         {
-            var category = _dbContext.GetFirstOrDefault(u => u.Id == id);
+            var category = _unitOfWork.Category.GetFirstOrDefault(u => u.Id == id);
             if (category == null)
             {
                 return NotFound();
             }
-            _dbContext.Remove(category);
-            _dbContext.Save();
+            _unitOfWork.Category.Remove(category);
+            _unitOfWork.Save();
             return RedirectToAction("Index");
         }
     }
