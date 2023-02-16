@@ -1,4 +1,6 @@
-﻿using MyNewApp.DataAccess.IRepository;
+﻿using Microsoft.EntityFrameworkCore;
+using MyNewApp.DataAccess.IRepository;
+using MyNewApp.DbContexts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +12,16 @@ namespace MyNewApp.DataAccess.Repository
 {
     public class Repository<T> : IRepository<T> where T : class
     {
+        private readonly ApplicationDbContext _dbContext;
+        internal DbSet<T> dbSet;
+        public Repository(ApplicationDbContext dbContext)
+        {
+            _dbContext = dbContext;
+            this.dbSet = _dbContext.Set<T>();
+        }
         public void Add(T entity)
         {
-            throw new NotImplementedException();
+            dbSet.Add(entity);
         }
 
         public IEnumerable<T> GetAll()
