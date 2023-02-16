@@ -26,7 +26,8 @@ namespace MyNewApp.DataAccess.Repository
 
         public IEnumerable<T> GetAll()
         {
-            throw new NotImplementedException();
+            IQueryable<T> query = dbSet;
+            return query.ToList();
         }
 
         public T GetFirstOrDefault(Expression<Func<T, bool>> filter)
