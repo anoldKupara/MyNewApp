@@ -101,8 +101,8 @@ namespace MyNewApp.Controllers
             }
             if (ModelState.IsValid)
             {
-                _dbContext.Categories.Update(category);
-                _dbContext.SaveChanges();
+                _dbContext.Update(category);
+                _dbContext.Save();
 
                 return RedirectToAction("Index");
             }
@@ -116,7 +116,7 @@ namespace MyNewApp.Controllers
             {
                 return NotFound();
             }
-            var category = _dbContext.Categories.Find(id);
+            var category = _dbContext.GetFirstOrDefault(u => u.Id == id);
             if (category == null)
             {
                 return NotFound();
@@ -129,13 +129,13 @@ namespace MyNewApp.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeletePost(int? id)
         {
-            var category = _dbContext.Categories.Find(id);
+            var category = _dbContext.GetFirstOrDefault(u => u.Id == id);
             if (category == null)
             {
                 return NotFound();
             }
-            _dbContext.Categories.Remove(category);
-            _dbContext.SaveChanges();
+            _dbContext.Remove(category);
+            _dbContext.Save();
             return RedirectToAction("Index");
         }
     }
