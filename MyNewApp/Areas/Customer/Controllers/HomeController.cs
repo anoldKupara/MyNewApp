@@ -2,7 +2,7 @@
 using MyNewApp.Models;
 using System.Diagnostics;
 
-namespace MyNewApp.Controllers
+namespace MyNewApp.Areas.Customer.Controllers
 {
     public class HomeController : Controller
     {

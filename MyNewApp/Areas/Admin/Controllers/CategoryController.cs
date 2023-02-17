@@ -3,7 +3,7 @@ using MyNewApp.DataAccess.IRepository;
 using MyNewApp.Models;
 using MyNewApp.Models.Models;
 
-namespace MyNewApp.Controllers
+namespace MyNewApp.Areas.Admin.Controllers
 {
     public class CategoryController : Controller
     {
@@ -19,7 +19,7 @@ namespace MyNewApp.Controllers
         {
             IEnumerable<Category> categoryList = _unitOfWork.Category.GetAll();
             return View(categoryList);
-        }   
+        }
 
         // GET - Create
         public IActionResult Create()
