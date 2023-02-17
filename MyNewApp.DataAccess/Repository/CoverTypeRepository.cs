@@ -1,4 +1,5 @@
 ﻿using MyNewApp.DataAccess.DbContexts;
+using MyNewApp.DataAccess.IRepository;
 using MyNewApp.Models.Models;
 using System;
 using System.Collections.Generic;
