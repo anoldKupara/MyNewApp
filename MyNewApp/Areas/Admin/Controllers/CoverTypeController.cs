@@ -69,5 +69,36 @@ namespace MyNewApp.Areas.Admin.Controllers
             return View(coverType);
         }
 
+        // GET - DELETE
+        public IActionResult Delete(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            var coverType = _unitOfWork.CoverType.GetFirstOrDefault(u => u.Id == id);
+            if (coverType == null)
+            {
+                return NotFound();
+            }
+            return View(coverType);
+        }
+
+        // POST - DELETE
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeletePost(int? id)
+        {
+            var coverType = _unitOfWork.CoverType.GetFirstOrDefault(u => u.Id == id);
+            if (coverType == null)
+            {
+                return NotFound();
+            }
+            _unitOfWork.CoverType.Remove(coverType);
+            _unitOfWork.Save();
+            TempData["Success"] = "Cover Type deleted successfully!";
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }
