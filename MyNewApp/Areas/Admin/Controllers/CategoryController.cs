@@ -16,6 +16,7 @@ namespace MyNewApp.Areas.Admin.Controllers
             //_dbContext = dbContext;
             _unitOfWork = unitOfWork;
         }
+        
         public IActionResult Index()
         {
             IEnumerable<Category> categoryList = _unitOfWork.Category.GetAll();
@@ -106,7 +107,7 @@ namespace MyNewApp.Areas.Admin.Controllers
             {
                 _unitOfWork.Category.Update(category);
                 _unitOfWork.Save();
-
+                TempData["Success"] = "Cover Type updated successfully!";
                 return RedirectToAction("Index");
             }
             return View(category);
@@ -139,6 +140,7 @@ namespace MyNewApp.Areas.Admin.Controllers
             }
             _unitOfWork.Category.Remove(category);
             _unitOfWork.Save();
+            TempData["Success"] = "Category deleted successfully!";
             return RedirectToAction("Index");
         }
     }
