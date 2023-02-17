@@ -1,8 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-
 using MyNewApp.Models.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace MyNewApp.DbContexts
+namespace MyNewApp.DataAccess.DbContexts
 {
     public class ApplicationDbContext : DbContext
     {

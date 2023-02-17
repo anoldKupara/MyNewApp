@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MyNewApp.DataAccess.DbContexts;
 using MyNewApp.DataAccess.IRepository;
-using MyNewApp.DbContexts;
 using System;
 using System.Collections.Generic;
 using System.Linq;

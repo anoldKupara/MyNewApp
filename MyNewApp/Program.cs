@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using MyNewApp.DataAccess.DbContexts;
 using MyNewApp.DataAccess.IRepository;
 using MyNewApp.DataAccess.Repository;
-using MyNewApp.DbContexts;
 
 var builder = WebApplication.CreateBuilder(args);
 

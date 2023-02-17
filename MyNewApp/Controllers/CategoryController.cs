@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MyNewApp.DataAccess.IRepository;
-using MyNewApp.DbContexts;
 using MyNewApp.Models;
 using MyNewApp.Models.Models;
 
