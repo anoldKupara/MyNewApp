@@ -34,7 +34,10 @@ namespace MyNewApp.DataAccess.Repository
                 objFromDb.Description = product.Description;
                 objFromDb.CategoryId = product.CategoryId;
                 objFromDb.CoverTypeId = product.CoverTypeId;
-                objFromDb.ImageUrl = product.ImageUrl;
+                if (product.ImageUrl != null)
+                {
+                    objFromDb.ImageUrl = product.ImageUrl;
+                }
             }
         }
     }
