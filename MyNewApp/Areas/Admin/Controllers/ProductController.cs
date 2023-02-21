@@ -18,46 +18,26 @@ namespace MyNewApp.Areas.Admin.Controllers
             return View(productList);
         }
 
-        // GET - Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // POST - Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Create(Product product)
-        {
-            if (ModelState.IsValid)
-            {
-                _unitOfWork.Product.Add(product);
-                _unitOfWork.Save();
-                TempData["Success"] = "Product added successfully";
-                return RedirectToAction(nameof(Index));
-            }
-            return View(product);
-        }
-
         // GET - Edit
-        public IActionResult Edit(int? id)
+        public IActionResult Upsert(int? id)
         {
+            Product product = new();
             if (id == null || id == 0)
             {
-                return NotFound();
+                //create product
+                return View(product);
             }
-            var product = _unitOfWork.Product.GetFirstOrDefault(u => u.Id == id);
-            if (product == null)
+            else
             {
-                return NotFound();
+                //update prduct
             }
-            return View(product);
+            return View();
         }
 
         // POST - Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Product product)
+        public IActionResult Upsert(Product product)
         {
             if (ModelState.IsValid)
             {
