@@ -54,11 +54,11 @@ namespace MyNewApp.Areas.Admin.Controllers
         // POST - Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Upsert(Product product)
+        public IActionResult Upsert(ProductVM product, IFormFile file)
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.Product.Update(product);
+                //_unitOfWork.Product.Update(product);
                 _unitOfWork.Save();
                 TempData["Success"] = "Product updated successfully";
                 return RedirectToAction(nameof(Index));
