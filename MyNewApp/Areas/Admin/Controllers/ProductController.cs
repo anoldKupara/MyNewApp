@@ -39,6 +39,7 @@ namespace MyNewApp.Areas.Admin.Controllers
             {
                 //create product
                 ViewBag.CategoryList = CategoryList; //ViewBag is a dynamic object
+                ViewData["CoverTypeList"] = CoverTypeList; //ViewData is a dictionary
                 return View(product);
             }
             else
