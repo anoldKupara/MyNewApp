@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MyNewApp.DataAccess.IRepository;
 using MyNewApp.Models.Models;
+using MyNewApp.Models.ViewModels.Products;
 
 namespace MyNewApp.Areas.Admin.Controllers
 {
@@ -22,25 +23,26 @@ namespace MyNewApp.Areas.Admin.Controllers
         // GET - Edit
         public IActionResult Upsert(int? id)
         {
-            Product product = new();
-            IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.GetAll().Select(
-                i => new SelectListItem
+            ProductVM productVM = new ProductVM()
+            {
+                Product = new Product(),
+                CategoryList = _unitOfWork.Category.GetAll().Select(i => new SelectListItem
                 {
                     Text = i.Name,
                     Value = i.Id.ToString()
-                });
-            IEnumerable<SelectListItem> CoverTypeList = _unitOfWork.CoverType.GetAll().Select(
-                i => new SelectListItem
+                }),
+                CoverTypeList = _unitOfWork.CoverType.GetAll().Select(i => new SelectListItem
                 {
                     Text = i.Name,
                     Value = i.Id.ToString()
-                });
+                })
+            };
             if (id == null || id == 0)
             {
                 //create product
-                ViewBag.CategoryList = CategoryList; //ViewBag is a dynamic object
-                ViewData["CoverTypeList"] = CoverTypeList; //ViewData is a dictionary
-                return View(product);
+                //ViewBag.CategoryList = CategoryList; //ViewBag is a dynamic object
+                //ViewData["CoverTypeList"] = CoverTypeList; //ViewData is a dictionary
+                return View(productVM);
             }
             else
             {
