@@ -38,6 +38,7 @@ namespace MyNewApp.Areas.Admin.Controllers
             if (id == null || id == 0)
             {
                 //create product
+                ViewBag.CategoryList = CategoryList; //ViewBag is a dynamic object
                 return View(product);
             }
             else
