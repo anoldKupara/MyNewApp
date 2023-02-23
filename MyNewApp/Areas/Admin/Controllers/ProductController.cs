@@ -10,9 +10,11 @@ namespace MyNewApp.Areas.Admin.Controllers
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
-        public ProductController(IUnitOfWork unitOfWork)
+        private readonly IWebHostEnvironment _hostEnvironment;
+        public ProductController(IUnitOfWork unitOfWork, IWebHostEnvironment hostEnvironment)
         {
             _unitOfWork = unitOfWork;
+            _hostEnvironment = hostEnvironment;
         }
         public IActionResult Index()
         {
@@ -54,14 +56,27 @@ namespace MyNewApp.Areas.Admin.Controllers
         // POST - Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Upsert(ProductVM product, IFormFile file)
+        public IActionResult Upsert(ProductVM product, IFormFile? file)
         {
             if (ModelState.IsValid)
             {
-                //_unitOfWork.Product.Update(product);
+                string wwwRootPath = _hostEnvironment.WebRootPath;
+                if (file != null)
+                {
+                    string fileName = Guid.NewGuid().ToString();
+                    var uploads = Path.Combine(wwwRootPath, @"images\products");
+                    var extension = Path.GetExtension(file.FileName);
+
+                    using (var fileStreams = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+                    {
+                        file.CopyTo(fileStreams);
+                    }
+                    product.Product.ImageUrl = @"\images\products\" + fileName + extension;
+                }
+                _unitOfWork.Product.Add(product.Product);
                 _unitOfWork.Save();
-                TempData["Success"] = "Product updated successfully";
-                return RedirectToAction(nameof(Index));
+                TempData["Success"] = "Product added successfully";
+                return RedirectToAction("Index");
             }
             return View(product);
         }

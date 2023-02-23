@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyNewApp.DataAccess.DbContexts
+namespace MyNewApp.DataAccess.DbContexts    
 {
     public class ApplicationDbContext : DbContext
     {
@@ -18,4 +18,6 @@ namespace MyNewApp.DataAccess.DbContexts
         public DbSet<CoverType> CoverTypes { get; set; }
         public DbSet<Product> Products { get; set; }
     }
+
+    
 }
