@@ -42,7 +42,7 @@ namespace MyNewApp.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("MyNewApp.Models.Models.CoverType", b =>
@@ -60,7 +60,7 @@ namespace MyNewApp.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CoverTypes");
+                    b.ToTable("CoverTypes", (string)null);
                 });
 
             modelBuilder.Entity("MyNewApp.Models.Models.Product", b =>
@@ -115,7 +115,7 @@ namespace MyNewApp.DataAccess.Migrations
 
                     b.HasIndex("CoverTypeId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("MyNewApp.Models.Models.Product", b =>
