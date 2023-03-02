@@ -11,6 +11,7 @@ namespace MyNewApp.DataAccess.IRepository
         ICategoryRepository Category { get; }
         ICoverTypeRepository CoverType { get; }
         IProductRepository Product { get; }
+        IExpenseRepository Expense { get; }
         void Save();
     }
 }

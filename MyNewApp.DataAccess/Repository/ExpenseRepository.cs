@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyNewApp.DataAccess.Repository
 {
-    internal class ExpenseRepository
+    public class ExpenseRepository
     {
     }
 }
